@@ -4,7 +4,7 @@ This User Guide explains how the engine work and how to use it for your games.
 
 ### Getting Started
 
-Check the [Readme](../blob/master/README.md) for Getting Started.
+Check the [Readme](../README.md) for Getting Started.
 
 ## Classes
 ### GameObject
@@ -26,4 +26,4 @@ gameObject.Draw(spriteBatch);
 spriteBatch.End();
 ```
 
-Go back to the [Readme](../blob/master/README.md).
+Go back to the [Readme](../README.md).
