@@ -26,6 +26,10 @@ Then add the project to your solution, then add it (Arta2DEngine) as a reference
 
 If you prefer to go with the DLL installation (so you don't need access to the Engine source code), you don't need to clone the project, you only need to download the latest release version of the DLL, put it inside your project folder and add it as a Reference, looking into the "Browse" category of your Reference Manager window.
 
+### Documentation
+
+You can find the documentation clicking this [link](../Documentation/userguide.md).
+
 ## Built With
 
 * [Monogame](https://www.monogame.net/) - Monogame Engine
