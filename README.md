@@ -15,13 +15,16 @@ This engine uses Monogame 3.7.1. It might work on other versions, but it is not 
 
 ### Installing
 
-Simply cloning this repository inside a folder of your choice with:
+Simply clone this repository inside a folder of your choice with:
 
 ```
 git clone https://github.com/Artanisx/Arta2DEngine.git
 ```
 
-Then add the project to your solution, then add it as a reference to your main game project.
+Then add the project to your solution, then add it (Arta2DEngine) as a reference to your main game project. You can find it in the "Projects" category of the Reference Manager window.
+![Adding Arta2DEngine as reference](http://puu.sh/F1tbT/1982549470.png)
+
+If you prefer to go with the DLL installation (so you don't need access to the Engine source code), you don't need to clone the project, you only need to download the latest release version of the DLL, put it inside your project folder and add it as a Reference, looking into the "Browse" category of your Reference Manager window.
 
 ## Built With
 
