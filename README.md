@@ -28,7 +28,7 @@ If you prefer to go with the DLL installation (so you don't need access to the E
 
 ### Documentation
 
-You can find the documentation clicking this [link](userguide.md).
+You can find the documentation clicking this [link](Documentation/userguide.md).
 
 ## Built With
 
