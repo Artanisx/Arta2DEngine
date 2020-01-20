@@ -15,6 +15,19 @@ namespace Arta2DEngine.Graphics
         // Each BaseObject has a position
         public Vector2 Position { get; set; }
 
+        /// <summary>
+        /// This is going to be the box around the object to be used for collisions.
+        /// </summary>        
+        public Rectangle BoundingBox
+        {
+            get
+            {
+                // Creates a rectangle around the object and return it
+                return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+
+            }
+        }
+
         // <summary>
         /// This method draws the object. It must be called between a spriteBatch.Begin and spriteBatch.End
         /// It can be overridden if needed.

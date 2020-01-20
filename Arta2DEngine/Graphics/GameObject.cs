@@ -10,20 +10,7 @@ namespace Arta2DEngine.Graphics
     public class GameObject : BaseObject
     {
         // A GameObject also has a velocity
-        public Vector2 Velocity { get; set; }
-
-        /// <summary>
-        /// This is going to be the box around the object to be used for collisions.
-        /// </summary>        
-        public Rectangle BoundingBox
-        {
-            get
-            {
-                // Creates a rectangle around the object and return it
-                return new Rectangle((int) Position.X, (int) Position.Y, Texture.Width, Texture.Height);
-
-            }
-        }
+        public Vector2 Velocity { get; set; }        
 
         /// <summary>
         /// First constructor. We pass a Texture and a Position to create a GameObject
