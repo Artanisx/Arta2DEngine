@@ -163,7 +163,6 @@ For a Gamepad command (in this example the X Button) you will do the below:
 ```c
 // Setup the GamepadX that will fire once
 gamepadX = new Command(Command.GamepadButton.X);
-gamepadX.SinglePress += GamepadX_SinglePress;
 ```
 
 For a Gamepad command, all buttons are supported with the exception of Triggers and Thumbstick (L3 and R3 work). Just check the Command.GamepadButton enum to see what's supported.
