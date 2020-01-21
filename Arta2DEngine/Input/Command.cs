@@ -46,6 +46,7 @@ namespace Arta2DEngine.Input
 
         #region Methods
 
+        // TODO: Consider the possibility to actually create subclasses with Command : Keyboard and Command : Mouse rather than this hybrid solution.
         // Constructor for a Keyboard command
         public Command(Keys key)
         {
