@@ -119,7 +119,7 @@ This is a simple implementation for the Input, from the Input module. You need t
 using Arta2DEngine.Input;
 ```
 
-Command.cs has two constructors, one for a Keyboard command and one for Mouse command.
+Command.cs has three constructors, one for a Keyboard command, one for Mouse command and one for Gamepad command.
 The keyboard command expects a key:
 ```c
 public Command(Keys key)
@@ -127,10 +127,15 @@ public Command(Keys key)
 
 The keyboard command expects a mouse button:
 ```c
-public Command(ButtonState mouseButton)
+public Command(MouseButton mouseButton)
 ```
 
-Calling this one will set the command type (key or mouse) and the keyboard button (or mouse button) that is connected to this command.
+The gamepad command expects a gamepad button:
+```c
+public Command(GamepadButton gamepadButton)
+```
+
+Calling this one will set the command type (key or mouse or gamepadbutton) and the keyboard button (or mouse button or gamepadbutton) that is connected to this command.
 
 In order to create a Command, you must first create a Game instance variable for it:
 ```c
@@ -153,6 +158,15 @@ clickCommand = new Command(Command.MouseButton.LeftButton);
 ```
 
 For a Mouse command, only Left mouse button (Command.MouseButton.LeftButton), Middle mouse button (Command.MouseButton.MiddleButton) and Right mouse button (Command.MouseButton.RightButton) are supported.
+
+For a Gamepad command (in this example the X Button) you will do the below:
+```c
+// Setup the GamepadX that will fire once
+gamepadX = new Command(Command.GamepadButton.X);
+gamepadX.SinglePress += GamepadX_SinglePress;
+```
+
+For a Gamepad command, all buttons are supported with the exception of Triggers, DPad and Thumbstick (L3 and R3 work). Just check the COmmand.GamepadButton enum to see what's supported.
 
 After this, the command has been created and in this example it will fire when the user presses the Space bar.
 

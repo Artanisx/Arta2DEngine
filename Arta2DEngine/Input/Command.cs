@@ -24,17 +24,41 @@ namespace Arta2DEngine.Input
         // To hold the current Mouse State
         private MouseState newMouseState;
 
+        // To hold the previous Gamepad State
+        private GamePadState oldGamepadState;
+
+        // To hold the current Mouse State
+        private GamePadState newGamepadState;
+
         // To hold the Key for this event
         private Keys key;
 
-        // A bool to set this as a Keyboard or Mouse command
+        // A bool to set this as a Keyboard
         private bool KeyboardCommand;
+
+        // A bool to set this as a Mouse command
+        private bool MouseCommand;
+
+        // A bool to set this as a Gamepad command
+        private bool GamepadCommand;
 
         // Enum for Mouse Button States
         public enum MouseButton { LeftButton, MiddleButton, RightButton };
         
         // To hold the mouse button for this event
         private MouseButton mouseButton;
+
+        // Enum for Gamepad Button States
+        public enum GamepadButton { A, B, Back, BigButton, LeftShoulder, LeftStick, RightShoulder, RightStick, Start, X, Y};
+
+        // To hold the Gamepad Button for this event
+        private GamepadButton gamepadButton;
+
+        // Enum for Gamepad DPAD Button States
+        public enum GamepadDPad { Down, Left, Right, Up };
+
+        // To hold the Gamepad DPAD Button for this event
+        private GamepadDPad gamepadDPadButton;
 
         // Event for SinglePress (this event is called only once per action)
         public event EventHandler SinglePress;
@@ -53,6 +77,8 @@ namespace Arta2DEngine.Input
             this.key = key;
 
             KeyboardCommand = true;
+            MouseCommand = false;
+            GamepadCommand = false;
         }
 
         // Constructor for a Mouse command
@@ -61,6 +87,18 @@ namespace Arta2DEngine.Input
             this.mouseButton = mouseButton;
 
             KeyboardCommand = false;
+            MouseCommand = true;
+            GamepadCommand = false;
+        }
+
+        // Constructor for a Gamepad command
+        public Command(GamepadButton gamepadButton)
+        {
+            this.gamepadButton = gamepadButton;
+
+            KeyboardCommand = false;
+            MouseCommand = false;
+            GamepadCommand = true;
         }
 
         public void Update(GameTime gameTime)
@@ -98,7 +136,8 @@ namespace Arta2DEngine.Input
 
                 // TODO: It might be prudent, optimization wise, to check for SinglePress OR ContinuedPress, knowing if there's a defined event or not.
             }
-            else if (!KeyboardCommand)
+            
+            if (MouseCommand)
             {
                 // This is a Mouse command
 
@@ -181,6 +220,235 @@ namespace Arta2DEngine.Input
                 oldMouseState = newMouseState; // Set the new state as the old state for next frame  
 
                 // TODO: It might be prudent, optimization wise, to check for SinglePress OR ContinuedPress, knowing if there's a defined event or not.
+            }
+
+            if (GamepadCommand)
+            {
+                // This is a Gamepad command                
+
+                // Store the current state of the gamepad
+                newGamepadState = GamePad.GetState(PlayerIndex.One);
+
+                // Check if the Gamepad is connected. If it isn't, we're done.
+                if (newGamepadState.IsConnected)
+                {
+                    // SINGLEPRESS
+
+                    switch (this.gamepadButton)
+                    {
+                        case GamepadButton.A:
+                            // Check if A button has been just pressed (to avoid multiple firing)
+                            if (newGamepadState.Buttons.A == ButtonState.Pressed && oldGamepadState.Buttons.A == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.B:
+                            if (newGamepadState.Buttons.B == ButtonState.Pressed && oldGamepadState.Buttons.B == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.Back:
+                            if (newGamepadState.Buttons.Back == ButtonState.Pressed && oldGamepadState.Buttons.Back == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.BigButton: // XBOX BUTTON
+                            if (newGamepadState.Buttons.BigButton == ButtonState.Pressed && oldGamepadState.Buttons.BigButton == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.LeftShoulder:
+                            if (newGamepadState.Buttons.LeftShoulder == ButtonState.Pressed && oldGamepadState.Buttons.LeftShoulder == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.LeftStick:
+                            if (newGamepadState.Buttons.LeftStick == ButtonState.Pressed && oldGamepadState.Buttons.LeftStick == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.RightShoulder:
+                            if (newGamepadState.Buttons.RightShoulder == ButtonState.Pressed && oldGamepadState.Buttons.RightShoulder == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.RightStick:
+                            if (newGamepadState.Buttons.RightStick == ButtonState.Pressed && oldGamepadState.Buttons.RightStick == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.Start:
+                            if (newGamepadState.Buttons.Start == ButtonState.Pressed && oldGamepadState.Buttons.Start == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.X:
+                            if (newGamepadState.Buttons.X == ButtonState.Pressed && oldGamepadState.Buttons.X == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.Y:
+                            if (newGamepadState.Buttons.Y == ButtonState.Pressed && oldGamepadState.Buttons.Y == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                    }
+
+                    // CONTINUED PRESS
+
+                    switch (this.gamepadButton)
+                    {
+                        case GamepadButton.A:
+                            // Check if the button has been pressed. Continuos fires are accepted.
+                            if (newGamepadState.Buttons.A == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.B:
+                            if (newGamepadState.Buttons.B == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.Back:
+                            if (newGamepadState.Buttons.Back == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.BigButton: // XBOX BUTTON
+                            if (newGamepadState.Buttons.BigButton == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.LeftShoulder:
+                            if (newGamepadState.Buttons.LeftShoulder == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.LeftStick:
+                            if (newGamepadState.Buttons.LeftStick == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.RightShoulder:
+                            if (newGamepadState.Buttons.RightShoulder == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.RightStick:
+                            if (newGamepadState.Buttons.RightStick == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.Start:
+                            if (newGamepadState.Buttons.Start == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.X:
+                            if (newGamepadState.Buttons.X == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.Y:
+                            if (newGamepadState.Buttons.Y == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                    }
+                }
+                else
+                    Console.WriteLine("Gamepad not connected");
+
+                
+                oldGamepadState = newGamepadState; // Set the new state as the old state for next frame
             }
         }
 
