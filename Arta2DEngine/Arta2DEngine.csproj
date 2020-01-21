@@ -45,6 +45,7 @@
     <Compile Include="Graphics\BaseObject.cs" />
     <Compile Include="Graphics\GameObject.cs" />
     <Compile Include="Graphics\UI\Button.cs" />
+    <Compile Include="Input\Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
