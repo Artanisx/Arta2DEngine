@@ -166,7 +166,7 @@ gamepadX = new Command(Command.GamepadButton.X);
 gamepadX.SinglePress += GamepadX_SinglePress;
 ```
 
-For a Gamepad command, all buttons are supported with the exception of Triggers, DPad and Thumbstick (L3 and R3 work). Just check the COmmand.GamepadButton enum to see what's supported.
+For a Gamepad command, all buttons are supported with the exception of Triggers and Thumbstick (L3 and R3 work). Just check the Command.GamepadButton enum to see what's supported.
 
 After this, the command has been created and in this example it will fire when the user presses the Space bar.
 

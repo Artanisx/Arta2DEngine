@@ -49,16 +49,10 @@ namespace Arta2DEngine.Input
         private MouseButton mouseButton;
 
         // Enum for Gamepad Button States
-        public enum GamepadButton { A, B, Back, BigButton, LeftShoulder, LeftStick, RightShoulder, RightStick, Start, X, Y};
+        public enum GamepadButton { A, B, Back, BigButton, LeftShoulder, LeftStick, RightShoulder, RightStick, Start, X, Y, DPadDown, DPadLeft, DPadRight, DPadUp};
 
         // To hold the Gamepad Button for this event
         private GamepadButton gamepadButton;
-
-        // Enum for Gamepad DPAD Button States
-        public enum GamepadDPad { Down, Left, Right, Up };
-
-        // To hold the Gamepad DPAD Button for this event
-        private GamepadDPad gamepadDPadButton;
 
         // Event for SinglePress (this event is called only once per action)
         public event EventHandler SinglePress;
@@ -336,6 +330,42 @@ namespace Arta2DEngine.Input
                                 SinglePress?.Invoke(this, new EventArgs());
                             }
                             break;
+                        case GamepadButton.DPadDown:
+                            if (newGamepadState.DPad.Down == ButtonState.Pressed && oldGamepadState.DPad.Down == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.DPadLeft:
+                            if (newGamepadState.DPad.Left == ButtonState.Pressed && oldGamepadState.DPad.Left == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.DPadRight:
+                            if (newGamepadState.DPad.Right == ButtonState.Pressed && oldGamepadState.DPad.Right == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.DPadUp:
+                            if (newGamepadState.DPad.Up == ButtonState.Pressed && oldGamepadState.DPad.Up == ButtonState.Released)
+                            {
+                                // Invoke the event
+
+                                // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                                SinglePress?.Invoke(this, new EventArgs());
+                            }
+                            break;
                     }
 
                     // CONTINUED PRESS
@@ -435,6 +465,42 @@ namespace Arta2DEngine.Input
                             break;
                         case GamepadButton.Y:
                             if (newGamepadState.Buttons.Y == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.DPadDown:
+                            if (newGamepadState.DPad.Down == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.DPadLeft:
+                            if (newGamepadState.DPad.Left == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.DPadRight:
+                            if (newGamepadState.DPad.Right == ButtonState.Pressed)
+                            {
+                                // Invoke the event
+
+                                // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                                ContinuedPress?.Invoke(this, new EventArgs());
+                            }
+                            break;
+                        case GamepadButton.DPadUp:
+                            if (newGamepadState.DPad.Up == ButtonState.Pressed)
                             {
                                 // Invoke the event
 
