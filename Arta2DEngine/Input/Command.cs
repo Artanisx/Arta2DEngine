@@ -27,11 +27,14 @@ namespace Arta2DEngine.Input
         // To hold the Key for this event
         private Keys key;
 
-        // To hold the mouse ButtonState for this event
-        private ButtonState mouseButton;
-
         // A bool to set this as a Keyboard or Mouse command
         private bool KeyboardCommand;
+
+        // Enum for Mouse Button States
+        public enum MouseButton { LeftButton, MiddleButton, RightButton };
+        
+        // To hold the mouse button for this event
+        private MouseButton mouseButton;
 
         // Event for SinglePress (this event is called only once per action)
         public event EventHandler SinglePress;
@@ -39,7 +42,7 @@ namespace Arta2DEngine.Input
         // Event for ContinuedPress (this event is called multiple times per action)
         public event EventHandler ContinuedPress;
 
-        #endregion
+        #endregion       
 
         #region Methods
 
@@ -52,7 +55,7 @@ namespace Arta2DEngine.Input
         }
 
         // Constructor for a Mouse command
-        public Command(ButtonState mouseButton)
+        public Command(MouseButton mouseButton)
         {
             this.mouseButton = mouseButton;
 
@@ -91,10 +94,92 @@ namespace Arta2DEngine.Input
                 }
 
                 oldKeyboardState = newKeyboardState;  // Set the new state as the old state for next frame  
+
+                // TODO: It might be prudent, optimization wise, to check for SinglePress OR ContinuedPress, knowing if there's a defined event or not.
             }
             else if (!KeyboardCommand)
             {
                 // This is a Mouse command
+
+                // Store the current state of the Mouse
+                newMouseState = Mouse.GetState();
+
+                // SINGLEPRESS
+
+                switch (this.mouseButton)
+                {
+                    case MouseButton.LeftButton:
+                        // Check if Left mouse button has been just pressed (to avoid multiple firing)
+                        if (newMouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released )
+                        {
+                            // Invoke the event
+
+                            // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                            SinglePress?.Invoke(this, new EventArgs());
+                        }
+                        break;
+                    case MouseButton.MiddleButton:
+                        // Check if Middle mouse button has been just pressed (to avoid multiple firing)
+                        if (newMouseState.MiddleButton == ButtonState.Pressed && oldMouseState.MiddleButton == ButtonState.Released)
+                        {
+                            // Invoke the event
+
+                            // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                            SinglePress?.Invoke(this, new EventArgs());
+                        }
+                        break;
+                    case MouseButton.RightButton:
+                        // Check if Right mouse button has been just pressed (to avoid multiple firing)
+                        if (newMouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released)
+                        {
+                            // Invoke the event
+
+                            // If the SinglePress event handler is not null, invoke it -- equivalent would be if(SinglePress != null) > SinglePress(this, new EventArgs())
+                            SinglePress?.Invoke(this, new EventArgs());
+                        }
+                        break;
+                }
+
+                // CONTINUED PRESS
+
+                switch (this.mouseButton)
+                {
+                    case MouseButton.LeftButton:
+                        // Check if Left mouse button has been pressed. It allows multiple fire events while it is pressed.
+                        if (newMouseState.LeftButton == ButtonState.Pressed)
+                        {
+                            // Invoke the event
+
+                            // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                            ContinuedPress?.Invoke(this, new EventArgs());
+                        }
+                        break;
+                    case MouseButton.MiddleButton:
+                        // Check if Middle mouse button has been pressed. It allows multiple fire events while it is pressed.
+                        if (newMouseState.MiddleButton == ButtonState.Pressed)
+                        {
+                            // Invoke the event
+
+                            // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                            ContinuedPress?.Invoke(this, new EventArgs());
+                        }
+                        break;
+                    case MouseButton.RightButton:
+                        // Check if Right mouse button has been pressed. It allows multiple fire events while it is pressed.
+                        if (newMouseState.RightButton == ButtonState.Pressed)
+                        {
+                            // Invoke the event
+
+                            // If the ContinuedPress event handler is not null, invoke it -- equivalent would be if(ContinuedPress != null) > ContinuedPress(this, new EventArgs())
+                            ContinuedPress?.Invoke(this, new EventArgs());
+                        }
+                        break;
+                }
+
+
+                oldMouseState = newMouseState; // Set the new state as the old state for next frame  
+
+                // TODO: It might be prudent, optimization wise, to check for SinglePress OR ContinuedPress, knowing if there's a defined event or not.
             }
         }
 

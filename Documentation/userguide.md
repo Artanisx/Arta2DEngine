@@ -6,8 +6,13 @@ This User Guide explains how the engine work and how to use it for your games.
 
 Check the [Readme](../README.md) for Getting Started.
 
-## Classes
-### GameObject
+## <a name="classes"></a>Classes
+List of classes
+* [GameObject](#gameobject)
+* [Button](#button)
+* [Command](#command)
+
+### <a name="gameobject"></a>GameObject
 
 This is the first simple class for the Engine. It serves as a container for GameObjects in a similar fashion to Unity 3D engine.
 TODO: Complete the guide
@@ -26,7 +31,9 @@ gameObject.Draw(spriteBatch);
 spriteBatch.End();
 ```
 
-### Button
+[Go back to Classes](#classes)
+
+### <a name="button"></a>Button
 
 This is a simple implementation for a Button used in an UI. You need to add the correct using instruction in order to use the Command class:
 ```c
@@ -103,7 +110,9 @@ quitButton.Draw(spriteBatch);
 spriteBatch.End();
 ```
 
-### Command
+[Go back to Classes](#classes)
+
+### <a name="command"></a>Command
 
 This is a simple implementation for the Input, from the Input module. You need to add the correct using instruction in order to use the Command class:
 ```c
@@ -128,11 +137,22 @@ In order to create a Command, you must first create a Game instance variable for
 Command fireCommand;
 ```
 
-Then, in the Initialize() method, you need to load the actually call the constructor:
+Then, in the Initialize() method, you need to load the actually call the constructor. 
+For a Keyboard command (in this example the Spacebar) you will do the below:
 ```c
 // Setup the fireCommand
 fireCommand = new Command(Keys.Space);
 ```
+
+All Keys are supported.
+
+For a Mouse command (in this example the Left Mouse Button) you will do the below:
+```c
+// Setup the clickCommand that will fire once
+clickCommand = new Command(Command.MouseButton.LeftButton);
+```
+
+For a Mouse command, only Left mouse button (Command.MouseButton.LeftButton), Middle mouse button (Command.MouseButton.MiddleButton) and Right mouse button (Command.MouseButton.RightButton) are supported.
 
 After this, the command has been created and in this example it will fire when the user presses the Space bar.
 
@@ -169,4 +189,4 @@ The last thing to do is to simply call the Update method inside the Update():
 fireCommand.Update(gameTime);
 ```
 
-Go back to the [Readme](../README.md).
+[Go back to Classes](#classes) - Go back to the [Readme](../README.md).
