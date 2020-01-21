@@ -100,4 +100,67 @@ quitButton.Draw(spriteBatch);
 spriteBatch.End();
 ```
 
+### Command
+
+This is a simple implementation for the Input, from the Input module.
+
+Command.cs has two constructors, one for a Keyboard command and one for Mouse command.
+The keyboard command expects a key:
+```c
+public Command(Keys key)
+```
+
+The keyboard command expects a mouse button:
+```c
+public Command(ButtonState mouseButton)
+```
+
+Calling this one will set the command type (key or mouse) and the keyboard button (or mouse button) that is connected to this command.
+
+In order to create a Command, you must first create a Game instance variable for it:
+```c
+Command fireCommand;
+```
+
+Then, in the Initialize() method, you need to load the actually call the constructor:
+```c
+// Setup the fireCommand
+fireCommand = new Command(Keys.Space);
+```
+
+After this, the command has been created and in this example it will fire when the user presses the Space bar.
+
+Immediately after, we need to set which kind of event we want to invoke:
+* SinglePress
+
+   We want this event to fire only once per press. Like jumping, for instance, one click will jump once.
+* ContinuedPress
+
+   We want this event to fire multiple times, as long as the button is pressed. Like shooting a laser for a space game.
+   
+In order to create a SinglePress event you assign to it a new Event method:
+```c
+fireCommand.SinglePress += FireCommand_SinglePress;
+```
+
+While Visual Studio will take care of the method creation if you let it, see below how a FireCommand_SinglePress method (in this example) will be:
+```c
+private void FireCommand_SinglePress(object sender, EventArgs e)
+{
+	// Do something
+}
+```
+
+To create a ContinuedPress event, you do the same thing, but set the ContinuedPress event instead:
+```c
+fireCommand.ContinuedPress += FireCommand_ContinuedPress;
+```
+
+Do note the method doesn't need to be called FireCommand_ContinuedPress, it's just a convention for events. It can be called anything, as long as its definition has an object and an EventArgs.
+
+The last thing to do is to simply call the Update method inside the Update():
+```c
+fireCommand.Update(gameTime);
+```
+
 Go back to the [Readme](../README.md).
