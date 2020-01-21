@@ -28,7 +28,10 @@ spriteBatch.End();
 
 ### Button
 
-This is a simple implementation for a Button used in an UI.
+This is a simple implementation for a Button used in an UI. You need to add the correct using instruction in order to use the Command class:
+```c
+using Arta2DEngine.Graphics.UI;
+```
 
 Button.cs has several constructors, with increasing definitions. The most complete one is below:
 ```c
@@ -102,7 +105,10 @@ spriteBatch.End();
 
 ### Command
 
-This is a simple implementation for the Input, from the Input module.
+This is a simple implementation for the Input, from the Input module. You need to add the correct using instruction in order to use the Command class:
+```c
+using Arta2DEngine.Input;
+```
 
 Command.cs has two constructors, one for a Keyboard command and one for Mouse command.
 The keyboard command expects a key:
