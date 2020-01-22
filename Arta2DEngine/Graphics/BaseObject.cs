@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Arta2DEngine.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Arta2DEngine.Graphics
@@ -24,7 +25,27 @@ namespace Arta2DEngine.Graphics
             {
                 // Creates a rectangle around the object and return it
                 return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+            }
+        }
 
+        /// <summary>
+        /// This is going to be the circle around the object to be used for collisions.
+        /// </summary>        
+        public Circle BoundingCircle
+        {
+            get
+            {
+                // Creates a circle around the object and return it
+
+                // Define its center
+                Vector2 centerOfObject = new Vector2((int)Position.X + Texture.Width / 2, (int)Position.Y + Texture.Height / 2);
+
+                // Define its radius (half its side)
+                float radiusOfSprite = Texture.Width / 2;
+
+                Circle circle = new Circle(centerOfObject, radiusOfSprite);
+
+                return circle;
             }
         }
 

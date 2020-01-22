@@ -49,6 +49,7 @@
     <Compile Include="Graphics\UI\Button.cs" />
     <Compile Include="Input\Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Circle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

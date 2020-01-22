@@ -15,7 +15,7 @@ namespace Arta2DEngine.Graphics
         /// <summary>
         /// First constructor. We pass a Texture and a Position to create a GameObject
         /// </summary>
-        /// <param name="textures">The textures for the game object.</param>
+        /// <param name="texture">The texture for the game object.</param>
         /// <param name="position">The starting position of the game object.</param>
         public GameObject(Texture2D texture, Vector2 position)
         {
@@ -26,7 +26,7 @@ namespace Arta2DEngine.Graphics
         /// <summary>
         /// Second constructor. We pass a Texture, a Position and a Velocity to create a GameObject
         /// </summary>
-        /// <param name="textures">The textures for the game object.</param>
+        /// <param name="texture">The texture for the game object.</param>
         /// <param name="position">The starting position of the game object.</param>
         /// <param name="velocity">The starting velocity of the game object.</param>
         public GameObject(Texture2D texture, Vector2 position, Vector2 velocity)
