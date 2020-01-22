@@ -16,12 +16,51 @@ List of classes
 
 ### <a name="gameobject"></a>GameObject
 
-This is the first simple class for the Engine. It serves as a container for GameObjects in a similar fashion to Unity 3D engine.
-TODO: Complete the guide
+This is a simple Game Object class for the Engine. It serves as a container for GameObjects in a similar fashion to Unity 3D engine. 
+GameObject extends BaseObject an abstract class that gives some basic functionality. 
 
+A BaseObject has:
+
+* Texture2D Texture
+
+   This holds a Texture2D for each object.
+
+* Vector2 Position
+
+   This holds the position for this object expressed as a Vector2.
+
+* Rectangle BoundingBox
+
+   This holds a Rectangle property that encompass the texture. It is created against its Position and Texture information so each time it is polled will be at the right position. It can be used for general and not very precise collision detection.
+   
+* Circle BoundingCircle
+
+   This holds a Circle property that encompass the texture. It can be used for collision detection. If an object is less of a square (for instance it's a space ship), checking collisions with a Circle will fire less false collisions than the BoundBox ones. It is a bit more precise than the BoundingBox collision, but it's dependant on the actual texture. This is created against the position and the texture information (from which a center is calculated alongside a radius based on the side of the texture).
+   
+While the BaseObject cannot be instantiated, it holds a definition for a Draw method that can be overridden if needed:
+```c
+public virtual void Draw(SpriteBatch spriteBatch)
+```
+
+A GameObject has additional stuff:
+
+* Vector2 Velocity
+
+   This holds a Vector2 used for its Velocity.
+
+GameObject implements two different constructors:
+```c
+GameObject(Texture2D texture, Vector2 position)
+```
+
+Omitting a Velocity and one that requires it:
+```c
+GameObject(Texture2D texture, Vector2 position, Vector2 velocity)
+```
+   
 To create a GameObject simply do the below:
 ```c
-// Create a GameObjectg
+// GameObject 
 GameObject gameObject;
 
 // Initialize it - LoadContent() is a good place for this
@@ -31,6 +70,29 @@ gameObject = new GameObject(goTexture, Vector2.Zero);
 spriteBatch.Begin();
 gameObject.Draw(spriteBatch);
 spriteBatch.End();
+```
+
+Currently, but not for long, GameObject does not implements an Update() method. As such, even if a Velocity is defined, you must personally update it in the Game Update() like below:
+```c
+gameObject.Position += gameObject.Velocity * speed;
+```
+
+While collisions are not specifically implemented in GameObject nor BaseObject, see below a simple implementation.
+
+Using BoundingBoxes:
+```c
+if (gameObject.BoundingBox.Intersects(gameObject2.BoundingBox))
+{	
+	Console.Out.WriteLine("gameObject collided with gameObject2");
+}
+```
+
+Using BoundingCircle:
+```c
+if (gameObject.BoundingCircle.Intersects(gameObject2.BoundingCircle))
+{	
+	Console.Out.WriteLine("gameObject collided with gameObject2");
+}
 ```
 
 [Go back to Classes](#classes)
