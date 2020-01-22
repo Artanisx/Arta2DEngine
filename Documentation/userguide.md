@@ -11,6 +11,7 @@ List of classes
 * [GameObject](#gameobject)
 * [Button](#button)
 * [Command](#command)
+* [SFX](#sfx)
 
 ### <a name="gameobject"></a>GameObject
 
@@ -202,4 +203,54 @@ The last thing to do is to simply call the Update method inside the Update():
 fireCommand.Update(gameTime);
 ```
 
+[Go back to Classes](#classes)
+
+### <a name="sfx"></a>SFX
+
+This is a simple implementation for sound effects, from the Audio module. You need to add the correct using instruction in order to use the Command class:
+```c
+using Arta2DEngine.Audio;
+```
+
+Since it features default value, the minimum information to pass is the actual SoundEffect. You can also pass a volume, a pitch and pan. All these are between 0.0f and 1.0f.
+```c
+public SFX(SoundEffect effect, float volume = 1.0f, float pitch = 0.0f, float pan = 0.0f)
+```
+
+Of note, the SoundEffect paramenter can be declared directly without a SoundEffect, passing directly the Content.Load instruction:
+```c
+testSFX = new SFX(Content.Load<SoundEffect>("sound"));
+```
+
+The constructor can be placed either in Initialize() or in LoadContent(), though the latter is more advisable. That is it.
+
+There are a few ways to handle a SFX:
+* SimplePlay() 
+   This will play the sound. It's the easiest way to play a sound effect. You won't have the possibility to stop or pause this, though, so it will need to simply finish on its own. You can use this multiple times (lilke for shooting bullets), launching this multiple times in a row or at the same time.
+* Play(bool loopPlay = false)
+   This will create a soundInstance for this sound effect, enabling control. Passing true will make this a looping sound (for ambience). This sound can be later Paused, Resumed and Stopped.
+* Pause()
+   This will pause a sound effect played via the Play() method. It can be resumed with a Resume().
+* Resume()
+   This will resume a previously paused sound effect played via the Play() method.
+* Stop()
+   This will stop a currently playing sound effect played via the Play() method.
+   
+Further, it is possible to Set the volume, pitch and pan values after creation, using:
+```c
+public void Set(float volume = 1.0f, float pitch = 0.0f, float pan = 0.0f)
+```
+
+It is also possible to Set a custom name for this sound (the construction will assign it the one assigned in the Content.mgcb) with this:
+```c
+public void SetName(string newName)
+```
+
+And it is possible to get the name, for other uses (like to find a specific sound from a list of SFX):
+```c
+public string GetName()
+```
+
 [Go back to Classes](#classes) - Go back to the [Readme](../README.md).
+
+
