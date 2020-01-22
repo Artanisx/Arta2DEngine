@@ -28,7 +28,7 @@ namespace Arta2DEngine.Audio
         {
             this.song = song;
             this.volume = volume;
-            this.songName = song.Name;            
+            this.songName = song.Name;   
         }
 
         // <summary>
@@ -80,6 +80,16 @@ namespace Arta2DEngine.Audio
             {
                 MediaPlayer.Pause();
             }            
+        }
+
+        // <summary>
+        /// This method changes the volume.
+        /// </summary> 
+        /// <param name="volume">The volume for this song. Default value is 1.0f (max volume)</param>
+        public void Set(float volume = 1.0f)
+        {
+            // Set the volume
+            this.volume = volume;
         }
 
         // <summary>

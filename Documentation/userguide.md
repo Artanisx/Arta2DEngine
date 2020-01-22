@@ -12,6 +12,7 @@ List of classes
 * [Button - Graphic.UI](#button)
 * [Command - Input](#command)
 * [SFX - Audio](#sfx)
+* [BGM - Audio](#bgm)
 
 ### <a name="gameobject"></a>GameObject
 
@@ -231,15 +232,11 @@ There are a few ways to handle a SFX:
    
 * Play(bool loopPlay = false)
 
-   This will create a soundInstance for this sound effect, enabling control. Passing true will make this a looping sound (for instance, ambience sounds). This sound can be later Paused, Resumed and Stopped. Calling this while the sound is already playing will be ignored.
+   This will create a soundInstance for this sound effect, enabling control. Passing true will make this a looping sound (for instance, ambience sounds). This sound can be later Paused, Resumed and Stopped. Calling this while the sound is already playing will be ignored. Calling this when the sound is paused, will resume it.
    
 * Pause()
 
    This will pause a sound effect played via the Play() method. It can be resumed with a Resume().
-   
-* Resume()
-
-   This will resume a previously paused sound effect played via the Play() method.
    
 * Stop()
 
@@ -260,6 +257,56 @@ And it is possible to get the name, for other uses (like to find a specific soun
 public string GetName()
 ```
 
+[Go back to Classes](#classes)
+
+### <a name="bgm"></a>BGM
+
+This is a simple implementation for Back Ground Music, from the Audio module. You need to add the correct using instruction in order to use the Command class:
+```c
+using Arta2DEngine.Audio;
+```
+
+Since it features default value, the minimum information to pass is the actual SoundEffect. You can also pass a volume.
+```c
+public BGM(Song song, float volume = 1.0f)
+```
+
+Of note, the Song paramenter can be declared directly without a Song, passing directly the Content.Load instruction:
+```c
+testBGM = new BGM(Content.Load<Song>("sound"));
+```
+
+The constructor can be placed either in Initialize() or in LoadContent(), though the latter is more advisable. That is it.
+
+It's very important to note that only 1 BGM can be played at a given time. This is different from the sound effects which can play multiple times and overlap.
+
+There are a few ways to handle a BGM:
+
+* Play(bool loopPlay = false)
+
+   This will play the song. Passing true will make this a looping music. This song can be later Paused, Resumed and Stopped. Calling this while the sound is already playing will stop any music currently playing a restart this one. Calling this when the song is paused, will resume it.
+   
+* Pause()
+
+   This will pause a song already playing via Play() method. It can be resumed with a Resume(). 
+   
+* Stop()
+
+   This will stop a currently playing song played via the Play() method.
+   
+Further, it is possible to Set the volume after creating, using:
+```c
+public void Set(float volume = 1.0f)
+```
+
+It is also possible to Set a custom name for this song (the construction will assign it the one assigned in the Content.mgcb) with this:
+```c
+public void SetName(string newName)
+```
+
+And it is possible to get the name, for other uses (like to find a specific sound from a list of SFX):
+```c
+public string GetName()
+```
+
 [Go back to Classes](#classes) - Go back to the [Readme](../README.md).
-
-
