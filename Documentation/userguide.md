@@ -226,14 +226,23 @@ The constructor can be placed either in Initialize() or in LoadContent(), though
 
 There are a few ways to handle a SFX:
 * SimplePlay() 
+
    This will play the sound. It's the easiest way to play a sound effect. You won't have the possibility to stop or pause this, though, so it will need to simply finish on its own. You can use this multiple times (lilke for shooting bullets), launching this multiple times in a row or at the same time.
+   
 * Play(bool loopPlay = false)
-   This will create a soundInstance for this sound effect, enabling control. Passing true will make this a looping sound (for ambience). This sound can be later Paused, Resumed and Stopped.
+
+   This will create a soundInstance for this sound effect, enabling control. Passing true will make this a looping sound (for instance, ambience sounds). This sound can be later Paused, Resumed and Stopped. Calling this while the sound is already playing will be ignored.
+   
 * Pause()
+
    This will pause a sound effect played via the Play() method. It can be resumed with a Resume().
+   
 * Resume()
+
    This will resume a previously paused sound effect played via the Play() method.
+   
 * Stop()
+
    This will stop a currently playing sound effect played via the Play() method.
    
 Further, it is possible to Set the volume, pitch and pan values after creation, using:
