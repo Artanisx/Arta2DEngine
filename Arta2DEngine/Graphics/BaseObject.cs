@@ -32,7 +32,7 @@ namespace Arta2DEngine.Graphics
         /// This method draws the object. It must be called between a spriteBatch.Begin and spriteBatch.End
         /// It can be overridden if needed.
         /// </summary>
-        /// <param name="spriteBatch">The spriteBatch from Game().</param
+        /// <param name="spriteBatch">The spriteBatch from Game().</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Position, Color.White);
