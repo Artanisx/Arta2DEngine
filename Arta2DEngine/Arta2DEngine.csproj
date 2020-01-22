@@ -42,6 +42,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Audio\BGM.cs" />
     <Compile Include="Audio\SFX.cs" />
     <Compile Include="Graphics\BaseObject.cs" />
     <Compile Include="Graphics\GameObject.cs" />

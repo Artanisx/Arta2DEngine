@@ -8,10 +8,10 @@ Check the [Readme](../README.md) for Getting Started.
 
 ## <a name="classes"></a>Classes
 List of classes
-* [GameObject](#gameobject)
-* [Button](#button)
-* [Command](#command)
-* [SFX](#sfx)
+* [GameObject - Graphic](#gameobject)
+* [Button - Graphic.UI](#button)
+* [Command - Input](#command)
+* [SFX - Audio](#sfx)
 
 ### <a name="gameobject"></a>GameObject
 
