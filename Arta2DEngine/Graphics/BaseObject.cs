@@ -58,5 +58,10 @@ namespace Arta2DEngine.Graphics
         {
             spriteBatch.Draw(Texture, Position, Color.White);
         }
+
+        // <summary>
+        /// This method updates the object. The base implementation is empty, so it must be overridden if needed.
+        /// </summary>
+        public virtual void Update() { }
     }
 }

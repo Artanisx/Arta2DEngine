@@ -73,10 +73,13 @@ gameObject.Draw(spriteBatch);
 spriteBatch.End();
 ```
 
-Currently, but not for long, GameObject does not implements an Update() method. As such, even if a Velocity is defined, you must personally update it in the Game Update() like below:
+GameObject does not overrides the BaseObject.cs Update() method, which stays empty to give an "interface" for its used. 
+As such, even if a Velocity is defined, you must personally update it in the Game Update() like below:
 ```c
 gameObject.Position += gameObject.Velocity * speed;
 ```
+
+Or, you may want to extend GameObject for specific purposes.
 
 While collisions are not specifically implemented in GameObject nor BaseObject, see below a simple implementation.
 
