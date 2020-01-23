@@ -13,6 +13,7 @@ List of classes
 * [Command - Input](#command)
 * [SFX - Audio](#sfx)
 * [BGM - Audio](#bgm)
+* [Utils - Utils](#utils)
 
 ### <a name="gameobject"></a>GameObject
 
@@ -370,5 +371,34 @@ And it is possible to get the name, for other uses (like to find a specific soun
 ```c
 public string GetName()
 ```
+
+[Go back to Classes](#classes).
+
+### <a name="utils"></a>Utils
+
+This is a module that contains some helper methods. The Utils class is a static class so it doesn't need to be instatiated to be used..
+You need to add the correct using statement for it:
+
+```c
+using Arta2DEngine.Utils;
+```
+
+The Utils class contains the below methods:
+
+* public static void SetWindowSize(GraphicsDeviceManager graphicDeviceManager, int width, int height)
+
+   This method will set the current Window Size. It needs the graphicManager from the Game() class, and width and height.
+
+* public static void SetFullScreen(GraphicsDeviceManager graphicDeviceManager, bool fullscreen)
+
+   This method will set the Full Screen. It needs the graphicManager from the Game() class, and a bool for the Fullscreen (true will enable it, false will disable it). Do keep in mind that, if you disable the full screen, the window size will still be the max resolution so you will need to change it back with SetWindowSize.   
+   
+* public static void SetWindowTitle(GameWindow gameWindow, string windowTitle)
+
+   This method will set the Window's Caption. It needs the gameWindow from the Game() class, and the string.
+   
+* public static float GetFPS(GameTime gameTime)
+
+   This method will return as a float the current FPS. It needs to be called inside Update() to have this value change and be, well, updated each frame.
 
 [Go back to Classes](#classes) - Go back to the [Readme](../README.md).
