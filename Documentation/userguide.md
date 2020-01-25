@@ -9,6 +9,7 @@ Check the [Readme](../README.md) for Getting Started.
 ## <a name="classes"></a>Classes
 List of classes
 * [GameObject - Graphic](#gameobject)
+* [Camera2D - Graphic](#camera2d)
 * [Button - Graphic.UI](#button)
 * [Command - Input](#command)
 * [SFX - Audio](#sfx)
@@ -403,5 +404,73 @@ The Utils class contains the below methods:
 * public static float GetFPS(GameTime gameTime)
 
    This method will return as a float the current FPS. It needs to be called inside Update() to have this value change and be, well, updated each frame.
+   
+[Go back to Classes](#classes).
+
+### <a name="camera2d"></a>Camera2D
+
+This is a graphic module that implements a simple 2D Camera with zoom, panning and lookat functions.
+
+You need to add the correct using statement for it:
+```c
+using Arta2DEngine.Graphics;
+```
+
+In order to use the Camera, you first need to create one. The ideal place for this is the Initialize() method. 
+There are two available constructors. The first one only takes one paramenter: the game viewport. It will set the camera position at Vector2.Zero (0,0):
+
+```c
+cam = Camera2D(graphics.GraphicsDevice.Viewport);
+```
+
+The second one also takes a Vector2 to set the camera position:
+
+```c
+cam = Camera2D(graphics.GraphicsDevice.Viewport, new Vector2 (10.0f, 0.0f));
+```
+
+In order to properly use the camera, in the Draw() method, you need to use a specific spriteBatch.Begin instruction:
+```c
+spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, cam.GetTransformation());
+```
+
+Basically, the final parameter of this .Batch constructor takes a Matrix and you must set it as the camera GetTransform method that will return the camera calculated matrix.
+
+The camera has two methods available, plus some editable properties:
+
+* public void Move(Vector2 amount)
+
+   This method will allow you to move the camera position, passing a Vector2 as the amount.
+
+* public Vector2 Position -- public float Zoom -- public float Rotation -- public Vector2 Origin
+
+   These properties are all directly editable. However, the more interesting one is Zoom (beside the obvious position), as it allow you to change the zoom on the fly (read, on the Update() method).
+   
+* public void LookAt(Vector2 vectorToLookAt)
+
+   This method will allow the camera to follow another object passing its position as Vector2.
+
+See below an example on how to use the above methods inside the Update() function:
+```c
+
+// Move the camera and zoom via the keyboard
+if (Keyboard.GetState().IsKeyDown(Keys.D))
+	cam.Move(new Vector2(5.0f, 0));
+if (Keyboard.GetState().IsKeyDown(Keys.A))
+	cam.Move(new Vector2(-5.0f, 0));
+if (Keyboard.GetState().IsKeyDown(Keys.W))
+	cam.Move(new Vector2(0, -5.0f));
+if (Keyboard.GetState().IsKeyDown(Keys.S))
+	cam.Move(new Vector2(0, 5.0f));
+if (Keyboard.GetState().IsKeyDown(Keys.PageUp))
+	cam.Zoom += 0.1f;
+if (Keyboard.GetState().IsKeyDown(Keys.PageDown))
+	cam.Zoom -= 0.1f;
+	
+// Set the camera to follow an object
+cam.LookAt(gameObject.Position);	
+```
+
+Do note that if you set the camera to follow an object, the user can't move it no longer manually as the Move() function will be overridden by the LookAt method (changing directly the Zoom property will work, though). If you put the Move() method below the LookAt method, it will produce some movement, but the camera will snap back to the LookAt object.
 
 [Go back to Classes](#classes) - Go back to the [Readme](../README.md).
