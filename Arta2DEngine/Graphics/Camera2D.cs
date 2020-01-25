@@ -96,7 +96,7 @@ namespace Arta2DEngine.Graphics
         // <summary>
         /// This method moves the camera, following (looking at) another Vector2.        
         /// </summary>
-        /// <param name="itemToLookAt">The Vector2 describing the object we need the camera to follow (look at).</param>
+        /// <param name="vectorToLookAt">The Vector2 describing the object we need the camera to follow (look at).</param>
         public void LookAt(Vector2 vectorToLookAt)
         {
             position = vectorToLookAt - new Vector2(viewport.Width / 2.0f, viewport.Height / 2.0f);
