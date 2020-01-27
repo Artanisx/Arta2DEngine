@@ -1,6 +1,6 @@
 # Arta2D Engine - Screen Manager
 
-This document explains how the Screen Manager module works and how to use it for your games.
+This document explains how the Screen Manager module works and how to use it for your games. *This module is not yet implemented in the engine.*
 
 ### Getting Started
 
@@ -56,9 +56,15 @@ protected override void Draw(GameTime gameTime)
 ### Creating a Game Screen
 
 In order to create a Game Screen, you first need to create a separate cs file. That file will contain a class that will extend GameScreen.
+
+ ```c
+class GameTest1 : GameScreen
+```
+
 GameScreen is the abstract class that defines a game screen and it has the below methods that can/should be overriden:
 
 * public override void LoadContent()
+
    In this method you'll load all your sprites, audio and content from the Content pipeline as you'll do usually. For example:
    ```c
     if (content == null)
@@ -68,51 +74,55 @@ GameScreen is the abstract class that defines a game screen and it has the below
    ```
    
 * public override void UnLoadContent()
+
    This will unload all content loaded by the game screen.
    ```c
    public override void UnloadContent()
-        {
-            content.Unload();
-        }
+   {
+		content.Unload();
+   }
    ```
    
 * public override void Update(GameTime gameTime)
+
    This is the heart of the scene. It will contain the all the update code, moving objects, AI, input handling etc.
    ```c
     public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime); 
-			
-			// Handle the input
-            HandleInput(gameTime);
-		}
+	{
+		base.Update(gameTime); 
+		
+		// Handle the input
+		HandleInput(gameTime);
+	}
    ```   
    
 * public override void Draw(GameTime gameTime)
+
    All the draw from this game screen happens in here.
    
 * public override void HandleInput(GameTime gameTime)
+
    This method will handle all the input for the screen, the game controls, the mouse buttons...
    For example:
     ```c
     public override void HandleInput(GameTime gameTime)
-        {
-            // If the user clicks ENTER it will load GameTest2
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                LoadingScreen.Load(ScreenManager, true, new GameTest2()); // Load the next level
+	{
+		// If the user clicks ENTER it will load GameTest2
+		if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+			LoadingScreen.Load(ScreenManager, true, new GameTest2()); // Load the next level
 
-            // If the user clicks ESC it will quit
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))                
-                ScreenManager.Game.Exit();
-        }        
+		// If the user clicks ESC it will quit
+		if (Keyboard.GetState().IsKeyDown(Keys.Escape))                
+			ScreenManager.Game.Exit();
+	}        
    ```   
    
 ### Loading a game screen
 
 As mentioned earlier, the first game screen to be loadead (the entry point of the game) is the one passed in the Game1() constructor with the ScreenManager.AddScreen method:
 ```c
-    // Activate the first screen (the enter point of the game).
-	screenManager.AddScreen(new GameTest1());
+// Activate the first screen (the enter point of the game).
+screenManager.AddScreen(new GameTest1());
 ```
 
 Afterwards, you can load another screen using the LoadingScreen.Load method:

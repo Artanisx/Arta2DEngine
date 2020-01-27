@@ -15,7 +15,7 @@ List of classes
 * [SFX - Audio](#sfx)
 * [BGM - Audio](#bgm)
 * [Utils - Utils](#utils)
-* [Screen Manager - Utiles](screenmanager.md)
+* [Screen Manager - Utils](screenmanager.md)
 
 ### <a name="gameobject"></a>GameObject
 
