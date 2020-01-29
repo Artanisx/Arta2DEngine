@@ -23,6 +23,10 @@ namespace Arta2DEngine.Graphics
         // Total frames of the animation
         private int totalFrames;
 
+        // Rectangles for the source and destination, used to calculate the correct frame for drawing
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+
         // Color tint
         private Color colorTint;
 
@@ -109,6 +113,14 @@ namespace Arta2DEngine.Graphics
         /// <param name="spriteBatch">This is the SpriteBatch to use for the drawing. Usually it's the Game() one.</param>        
         public override void Draw(SpriteBatch spriteBatch)
         {
+            CalculateFrame();
+
+            // Finally, we draw the correct frame in the wanted location            
+            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, colorTint);                        
+        }
+
+        private void CalculateFrame()
+        {
             // First, we need to get the size of each individual frame
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
@@ -118,15 +130,10 @@ namespace Arta2DEngine.Graphics
             int column = currentFrame % Columns;
 
             // We then create a rectangle to "cut" the current frame using the above calculated values
-            Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+            sourceRectangle = new Rectangle(width * column, height * row, width, height);
 
             // We then create a rectangle that will be at the position (location) of where we need to draw it on the screen
-            Rectangle destinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, width, height);
-
-            // Finally, we draw the correct frame in the wanted location
-            spriteBatch.Begin();
-            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, colorTint);
-            spriteBatch.End();
+            destinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, width, height);
         }
     }
 }

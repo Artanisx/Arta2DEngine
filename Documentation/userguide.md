@@ -32,6 +32,22 @@ A BaseObject has:
 * Vector2 Position
 
    This holds the position for this object expressed as a Vector2.
+   
+* float Scale
+
+   This holds the scale for this object expressed as a float. 1.0f is the default value. It's used in the Draw method. Changing this at any point, changes the scale of the object. For example the following in the Update() method will continuously scale the object: gameObject.Scale += 0.01f; 
+   
+* float RotationAngle
+
+   This holds the rotation angle for this object expressed as a float. 0.0f is the default value (no rotation). It's used in the Draw method. Changing this at any point, changes the rotation of the object. For example the following in the Update() method will rotate the object: gameObject.RotationAngle += 0.01f; 
+   
+* Vector2 virtual Origin
+
+   This holds the Origin for this object expressed as a Vector2. Trying to get this value will return the center point of the texture. It's used in the Draw method for the rotation. If a rotation is not expressed (so the value is 0.0f), the origin will be assumed as being 0,0 (top left corner). Basically setting externally this properties does nothing; getting this value only returns the center of the texture and it's used for drawing a rotated texture, else it is ignored. A proper GameObject should probably override this property.
+   
+* Rectangle SourceRectangle
+
+   This holds the source rectangle for this object expressed as a Rectangle. Used for the base drawing method.
 
 * Rectangle BoundingBox
 
