@@ -8,7 +8,7 @@ In order to use the Screen Manager system you have to do some preparations, firs
 
 Firstly, you need to add the correct using statement in the Game1.cs class:
 ```c
-using Arta2DEngine.Utils;
+using Arta2DEngine.Utils.SceneManager;
 ```
 
 Secondly, you need to create a ScreenManager inside your Game1.cs class, in the class-level variables, before the constructor:
