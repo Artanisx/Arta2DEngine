@@ -62,6 +62,6 @@ namespace Arta2DEngine.Graphics
         // <summary>
         /// This method updates the object. The base implementation is empty, so it must be overridden if needed.
         /// </summary>
-        public virtual void Update() { }
+        public virtual void Update(GameTime gameTime) { }
     }
 }

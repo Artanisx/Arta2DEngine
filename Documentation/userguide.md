@@ -9,6 +9,7 @@ Check the [Readme](../README.md) for Getting Started.
 ## <a name="classes"></a>Classes
 List of classes
 * [GameObject - Graphic](#gameobject)
+* [AnimatedGameObject - Graphic](#animatedgameobject)
 * [Camera2D - Graphic](#camera2d)
 * [Button - Graphic.UI](#button)
 * [Command - Input](#command)
@@ -102,6 +103,61 @@ if (gameObject.BoundingCircle.Intersects(gameObject2.BoundingCircle))
 ```
 
 [Go back to Classes](#classes)
+
+### <a name="animatedgameobject"></a>Animated GameObject
+
+This an extension of the simple Game Object class for the Engine. 
+This time, the Game Object is animated; its Texture2D will therefore hold a Texture atlas. Basically an Atlas is an image that can be divided into rows and columns.
+Each "cell" contains a frame of the animation. Each frame must be perfectly centered into its cell or the animation will not look right.
+
+An AnimatedBaseObject has, in addition to the Game Object fields:
+
+* public int Rows { get; set; }
+
+   This holds the number of rows from the Texture Atlas.
+
+* public int Columns { get; set; }
+
+   This holds the number of columns from the Texture Atlas.
+
+ 
+The Animated GameObject implements three different constructors:
+```c
+public AnimatedGameObject(Texture2D texture, Vector2 position, int rows, int columns)
+```
+
+This will ask for the minimum information, a Texture2D (holding an Atlas), a position, the number of rows of the Atlas and the number of Columns.
+
+```c
+public AnimatedGameObject(Texture2D texture, Vector2 position, int rows, int columns, Vector2 velocity)
+```
+
+The second constructor also asks for a Velocity (but do bear in mind it won't do anything with it either).
+
+```c
+public AnimatedGameObject(Texture2D texture, Vector2 position, int rows, int columns, Vector2 velocity, Color color) 
+```
+
+The last constructor will also ask for a color tint. Do keep in mind the base GameObject do not have a Draw method and the BaseObject method only draws with a Color.White tint. 
+
+To create an Animated GameObject, given a Texture Atlas with known columns and rows, simply do the below:
+```c
+// Animated GameObject 
+private AnimatedGameObject animatedGO;
+
+// Initialize it - LoadContent() is a good place for this
+animatedGO = new AnimatedGameObject(Content.Load<Texture2D>("SmileyWalk"), new Vector2(200, 200), 4, 4, new Vector2(0,0), Color.Purple);
+
+// Updated it in the Update() method
+animatedGO.Update(gameTime);
+
+// Draw it - Draw() is the perfect place. This must be called inside the Begin / End spriteBatch.Draw.
+spriteBatch.Begin();
+animatedGO.Draw(spriteBatch);
+spriteBatch.End();
+```
+
+[Go back to Classes](#classes) 
 
 ### <a name="button"></a>Button
 

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Audio\BGM.cs" />
     <Compile Include="Audio\SFX.cs" />
+    <Compile Include="Graphics\AnimatedGameObject.cs" />
     <Compile Include="Graphics\BaseObject.cs" />
     <Compile Include="Graphics\Camera2D.cs" />
     <Compile Include="Graphics\GameObject.cs" />
