@@ -100,7 +100,7 @@ namespace Arta2DEngine.Graphics.UI
             }
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             // Save the previous mouse state
             _previousMouse = _currentMouse;
