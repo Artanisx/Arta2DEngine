@@ -11,6 +11,7 @@ List of classes
 * [GameObject - Graphic](#gameobject)
 * [AnimatedGameObject - Graphic](#animatedgameobject)
 * [Camera2D - Graphic](#camera2d)
+* [Primitives2D - Graphic](#primitives2D)
 * [Button - Graphic.UI](#button)
 * [Command - Input](#command)
 * [SFX - Audio](#sfx)
@@ -171,6 +172,74 @@ animatedGO.Update(gameTime);
 spriteBatch.Begin();
 animatedGO.Draw(spriteBatch);
 spriteBatch.End();
+```
+
+[Go back to Classes](#classes) 
+
+### <a name="primitives2D"></a>Primitives 2D
+
+This static class allows to draw primitives for debugging purposes. This class was not written by me and, until replaced, should be credited to... someone I don't recall at the moment...
+
+To use this static class, you need to include the right using statement:
+```c
+using Arta2DEngine.Graphics;
+```
+
+The static class has several methods:
+
+* FillRectangle 
+
+   This will draws a color filled rectangle. There are several constructors for this. All the parameters are commented.
+   FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
+   FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float angle)
+   FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
+   FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float angle)
+   FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color)
+   FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color, float angle)
+   
+* DrawRectangle
+
+   This will draw a rectangle. There are several constructors for this. All the parameters are commented.
+   DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
+   DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float thickness)
+   DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
+   DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float thickness)
+   
+* DrawLine
+
+   This will draw a rectangle. There are several constructors for this. All the parameters are commented.
+   DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color)
+   DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color, float thickness)
+   DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color)
+   DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color, float thickness)
+   DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color)
+   DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color, float thickness)
+   
+* PutPixel
+
+   This will draw a single pixel.
+   PutPixel(this SpriteBatch spriteBatch, float x, float y, Color color)
+   PutPixel(this SpriteBatch spriteBatch, Vector2 position, Color color)
+   
+* DrawCircle
+
+   This will draw a circle. There are several constructors for this. All the parameters are commented.
+   DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color)
+   DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color, float thickness)
+   DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides, Color color)
+   DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides, Color color, float thickness)
+   
+* DrawArc
+
+   This will draw an Arc. There are several constructors for this. All the parameters are commented.
+   DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, float startingAngle, float radians, Color color)   
+   DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, float startingAngle, float radians, Color color, float thickness)
+
+Using this static class is quite easy, you simply have to call the Draw method inside the Draw() between a spriteBatch.Begin and spriteBatch.End. For example:
+```c
+Primitives2D.DrawCircle(spriteBatch, gameObject.BoundingCircle.Center, gameObject.BoundingCircle.Radius, 10, Color.Red, 1f);
+Primitives2D.DrawLine(spriteBatch, gameObject.BoundingCircle.Center, gameObject.BoundingCircle.Radius, 0f, Color.Purple);
+Primitives2D.DrawRectangle(spriteBatch, gameObject.BoundingBox, Color.Red);
 ```
 
 [Go back to Classes](#classes) 
