@@ -183,7 +183,7 @@ spriteBatch.End();
 
 ### <a name="primitives2D"></a>Primitives 2D
 
-This static class allows to draw primitives for debugging purposes. This class was not written by me and, until replaced, should be credited to... someone I don't recall at the moment...
+This static class allows to draw primitives for debugging purposes. This class was not written by me and, until replaced, should be credited to [C3 2D XNA Primitives](https://bitbucket.org/C3/2d-xna-primitives/wiki/Home)
 
 To use this static class, you need to include the right using statement:
 ```c
@@ -195,12 +195,12 @@ The static class has several methods:
 * FillRectangle 
 
    This will draws a color filled rectangle. There are several constructors for this. All the parameters are commented.
-   FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
-   FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float angle)
-   FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
-   FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float angle)
-   FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color)
-   FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color, float angle)
+   * FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
+   * FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float angle)
+   * FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
+   * FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float angle)
+   * FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color)
+   * FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color, float angle)
    
 * DrawRectangle
 
