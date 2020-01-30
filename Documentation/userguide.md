@@ -63,6 +63,11 @@ While the BaseObject cannot be instantiated, it holds a definition for a Draw me
 public virtual void Draw(SpriteBatch spriteBatch)
 ```
 
+It also features a DrawDebug method used to draw the bounding box, the bouding circle and a radius, using the Primitives2D static class:
+```c
+public virtual void DrawDebug(SpriteBatch spriteBatch, Color color)
+```
+
 A GameObject has additional stuff:
 
 * Vector2 Velocity

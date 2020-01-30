@@ -126,6 +126,22 @@ namespace Arta2DEngine.Graphics
         }
 
         // <summary>
+        /// This method draws the bounding boxes, circles and radii for debug purposes. It must be called between a spriteBatch.Begin and spriteBatch.End        
+        /// </summary>
+        /// <param name="spriteBatch">The spriteBatch from Game().</param>
+        public virtual void DrawDebug(SpriteBatch spriteBatch, Color color)
+        {           
+            // Draw the Bounding Circle
+            Primitives2D.DrawCircle(spriteBatch, this.BoundingCircle.Center, this.BoundingCircle.Radius, 10, color, 1f);
+
+            // Draw the Radius
+            Primitives2D.DrawLine(spriteBatch, this.BoundingCircle.Center, this.BoundingCircle.Radius, 0f, color);
+
+            // Draw the Bounding Box
+            Primitives2D.DrawRectangle(spriteBatch, this.BoundingBox, color);           
+        }
+
+        // <summary>
         /// This method updates the object. The base implementation is empty, so it must be overridden if needed.
         /// </summary>
         public virtual void Update(GameTime gameTime) { }
