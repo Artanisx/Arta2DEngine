@@ -205,40 +205,40 @@ The static class has several methods:
 * DrawRectangle
 
    This will draw a rectangle. There are several constructors for this. All the parameters are commented.
-   DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
-   DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float thickness)
-   DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
-   DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float thickness)
+   * DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
+   * DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float thickness)
+   * DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
+   * DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float thickness)
    
 * DrawLine
 
    This will draw a rectangle. There are several constructors for this. All the parameters are commented.
-   DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color)
-   DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color, float thickness)
-   DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color)
-   DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color, float thickness)
-   DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color)
-   DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color, float thickness)
+   * DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color)
+   * DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color, float thickness)
+   * DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color)
+   * DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color, float thickness)
+   * DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color)
+   * DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color, float thickness)
    
 * PutPixel
 
    This will draw a single pixel.
-   PutPixel(this SpriteBatch spriteBatch, float x, float y, Color color)
-   PutPixel(this SpriteBatch spriteBatch, Vector2 position, Color color)
+   * PutPixel(this SpriteBatch spriteBatch, float x, float y, Color color)
+   * PutPixel(this SpriteBatch spriteBatch, Vector2 position, Color color)
    
 * DrawCircle
 
    This will draw a circle. There are several constructors for this. All the parameters are commented.
-   DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color)
-   DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color, float thickness)
-   DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides, Color color)
-   DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides, Color color, float thickness)
+   * DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color)
+   * DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color, float thickness)
+   * DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides, Color color)
+   * DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides, Color color, float thickness)
    
 * DrawArc
 
    This will draw an Arc. There are several constructors for this. All the parameters are commented.
-   DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, float startingAngle, float radians, Color color)   
-   DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, float startingAngle, float radians, Color color, float thickness)
+   * DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, float startingAngle, float radians, Color color)   
+   * DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, float startingAngle, float radians, Color color, float thickness)
 
 Using this static class is quite easy, you simply have to call the Draw method inside the Draw() between a spriteBatch.Begin and spriteBatch.End. For example:
 ```c
