@@ -667,8 +667,23 @@ Then, in the LoadContent() method, you need to load some textures for the partic
 ```c
  // Load the particles and then initalize the ParticleEngine
             List<Texture2D> textures = new List<Texture2D>();
-            textures.Add(Content.Load<Texture2D>("Images/particle"));          
-            particleEngine = new ParticleEngine(textures, Vector2.Zero);
+            textures.Add(Content.Load<Texture2D>("Images/particle")); 
+```
+
+Now, you need to create a Particle Engine. The constructor for it takes three parameters:
+```c
+public ParticleEngine(List<Texture2D> textures, Vector2 location, ParticleEffect particleEffect)
+```
+
+The first one is the list of textures it will use (in our example above, we created it and it is called "textures"), the second is the location for its emitter. The third one is the most important parameter of them all: it's a ParticleEffect that tells the engine how to genereate its particles. Arta2DEngine gives one Default effect called DefaultParticleEffects and it can be passed as parameter; but first you need to create one:
+```c
+DefaultParticleEffect defaultEffect = new DefaultParticleEffect(2);
+```
+
+The constructor for this effect only takes one parameter: The total number of particles that should be fired. Once you created it, you can call the constructor for the ParticleEngine:
+
+```c
+particleEngine = new ParticleEngine(textures, Vector2.Zero, defaultEffect);
 ```
 
 In the Update() method you only need to call:
@@ -687,5 +702,59 @@ Do keep in mind, you have the option to access the EmitterLocation property to c
 particleEngine.EmitterLocation = new Vector2( random.Next(0, ScreenManager.Game.GraphicsDevice.Viewport.Width) * randomization,
                                               random.Next(0, ScreenManager.Game.GraphicsDevice.Viewport.Height) * randomization);
 ```
+
+In order to create your own ParticleEffects you need to extend the base ParticleEffect class in the engine, doing so:
+
+```c
+public class YourNewParticleEffect : ParticleEffect
+```
+
+It is adviseable to set the member field "numberOfParticles" to something you either want the user to customize (so inside a constructor), or directly. Then you only need to implement one single method: 
+```c
+public override Particle GenerateParticle(ParticleEngine particleEngine)
+```
+
+This method will need to return a Particle for the ParticleEngine to work with. In here you can define how you create each particle, and the total number of them. For example, the DefaultParticleEffects method is the below one:
+
+```c
+public override Particle GenerateParticle(ParticleEngine particleEngine)
+{
+	// Pick a random texture from the texture list available
+	Texture2D texture = particleEngine.Textures[random.Next(particleEngine.Textures.Count)];
+
+	// Set the location of the new particle based upon the emitter location
+	Vector2 position = particleEngine.EmitterLocation;
+
+	// Set the velocity for the new particle using random generated values
+	Vector2 velocity = new Vector2(
+			1f * (float)(random.NextDouble() * 2 - 1),
+			1f * (float)(random.NextDouble() * 2 - 1));
+
+	float angle = 0;
+
+	// Set a random angularvelocity (spinning)
+	float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
+
+	// Set a random color for this particle
+	Color color = new Color(
+			(float)random.NextDouble(),
+			(float)random.NextDouble(),
+			(float)random.NextDouble());
+
+	// Set a random size for this particle
+	float size = (float)random.NextDouble();
+
+	// Set a random ttl for this particle (minimum 5)
+	int ttl = 20 + random.Next(40);
+
+	// Set the total number of particles for this effect
+	particleEngine.TotalParticles = numberOfParticles;
+
+	// Return a new particle generated according to the above
+	return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl);
+}
+```
+
+Using this system you can create pretty much any particle effect you want, making sure you create the number of particles you want, the texture you like to use, their time to life, their movement etc.
 
 [Go back to Classes](#classes) - Go back to the [Readme](../README.md).

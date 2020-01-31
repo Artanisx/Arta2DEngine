@@ -14,6 +14,16 @@ namespace Arta2DEngine.Graphics.ParticleEngine
         public Vector2 EmitterLocation { get; set; }
         private List<Particle> particles;
         private List<Texture2D> textures;
+        private int totalParticles = 2;
+
+        // The effect to be used
+        private ParticleEffect particleEffect;
+
+        // To access the number of total particles fired by this Engine. Accessed by the ParticleEffect.
+        public int TotalParticles { get => totalParticles; set => totalParticles = value; }
+
+        // To access the Textures. Accessed by the ParticleEffect.
+        public List<Texture2D> Textures { get => textures; set => textures = value; }
 
         /// <summary>
         /// We want the user to tell us what textures we can use, as well as the default location of the emitter,
@@ -22,7 +32,8 @@ namespace Arta2DEngine.Graphics.ParticleEngine
         /// </summary>
         /// <param name="textures">The textures we can use.</param>
         /// <param name="location">The default location of the emitter.</param>
-        public ParticleEngine(List<Texture2D> textures, Vector2 location)
+        /// <param name="particleEffect">The Particle Effect to be used by this Engine.</param>
+        public ParticleEngine(List<Texture2D> textures, Vector2 location, ParticleEffect particleEffect)
         {
             EmitterLocation = location;
             this.textures = textures;
@@ -32,56 +43,27 @@ namespace Arta2DEngine.Graphics.ParticleEngine
 
             // Create a new RNG
             random = new Random();
+
+            // Set the particle effect to be used
+            this.particleEffect = particleEffect;
         }
 
         /// <summary>
         /// One of the important things this class will need to be able to do is to create particles with parameters
-        /// that make the engine behave like you want it. We are going to create a default method for generating particles below.
+        /// that make the engine behave like you want it. This method will call the ParticleEffect that was passed with the constructor.
         /// </summary>
         private Particle GenerateNewParticle()
         {
-            // Pick a random texture from the texture list available
-            Texture2D texture = textures[random.Next(textures.Count)];
-
-            // Set the location of the new particle based upon the emitter location
-            Vector2 position = EmitterLocation;
-
-            // Set the velocity for the new particle using random generated values
-            Vector2 velocity = new Vector2(
-                    1f * (float)(random.NextDouble() * 2 - 1),
-                    1f * (float)(random.NextDouble() * 2 - 1));
-
-            float angle = 0;
-
-            // Set a random angularvelocity (spinning)
-            float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-
-            // Set a random color for this particle
-            Color color = new Color(
-                    (float)random.NextDouble(),
-                    (float)random.NextDouble(),
-                    (float)random.NextDouble());
-
-            // Set a random size for this particle
-            float size = (float)random.NextDouble();
-
-            // Set a random ttl for this particle (minimum 5)
-            int ttl = 20 + random.Next(40);
-
-            // Return a new particle generated according to the above
-            return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl);
+            return particleEffect.GenerateParticle(this);            
         }
 
         /// <summary>
         /// This adds new particles as needed, allow each of the particles to update themselves, and remove dead particles.        
         /// </summary>        
         public void Update()
-        {
-            // Number of maximum total particles to have at a time
-            int total = 2;
-
+        {           
             // Generate each particle up until the total number above
-            for (int i = 0; i < total; i++)
+            for (int i = 0; i < totalParticles; i++)
             {
                 particles.Add(GenerateNewParticle());
             }

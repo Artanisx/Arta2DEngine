@@ -48,7 +48,9 @@
     <Compile Include="Graphics\BaseObject.cs" />
     <Compile Include="Graphics\Camera2D.cs" />
     <Compile Include="Graphics\GameObject.cs" />
+    <Compile Include="Graphics\ParticleEngine\DefaultParticleEffect.cs" />
     <Compile Include="Graphics\ParticleEngine\Particle.cs" />
+    <Compile Include="Graphics\ParticleEngine\ParticleEffect.cs" />
     <Compile Include="Graphics\ParticleEngine\ParticleEngine.cs" />
     <Compile Include="Graphics\Primitives2D.cs" />
     <Compile Include="Graphics\UI\Button.cs" />
