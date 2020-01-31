@@ -552,6 +552,30 @@ The Utils class contains the below methods:
 
    This method will return as a float the current FPS. It needs to be called inside Update() to have this value change and be, well, updated each frame.
    
+* public static Vector2 GetCenterPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+
+   This method will return a Vector2 calculated to get the related position. Useful for positioning stuff in relation to the window.
+   
+* public static Vector2 GetTopCenterPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+
+   This method will return a Vector2 calculated to get the related position. Useful for positioning stuff in relation to the window.
+
+* public static Vector2 GetBottomCenterPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+
+   This method will return a Vector2 calculated to get the related position. Useful for positioning stuff in relation to the window.
+  
+* public static Vector2 GetBottomLeftPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+
+   This method will return a Vector2 calculated to get the related position. Useful for positioning stuff in relation to the window.
+  
+* public static Vector2 GetBottomRightPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+
+   This method will return a Vector2 calculated to get the related position. Useful for positioning stuff in relation to the window.
+   
+* public static Vector2 GetTopRightPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+
+   This method will return a Vector2 calculated to get the related position. Useful for positioning stuff in relation to the window.
+  
 [Go back to Classes](#classes).
 
 ### <a name="camera2d"></a>Camera2D

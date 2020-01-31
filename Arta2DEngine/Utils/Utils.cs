@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Arta2DEngine.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Arta2DEngine.Utils
@@ -55,6 +56,84 @@ namespace Arta2DEngine.Utils
             frameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             return frameRate;
+        }
+
+        /// <summary>
+        /// This method will return a Vector2 calculated as the Center position of the window of a given object. Used to position an object in the center of the window.
+        /// This assumes a game object Origin of 0,0.
+        /// </summary>
+        /// <param name="graphicsDevice">The Game's GraphicsDevice (ScreenManager.Game.GraphicsDevice) if used with Screen Manager.</param>     
+        /// <param name="object">The Game object we need to place. Needed to calculate its width.</param>     
+        /// <param name="xOffset">The number of pixel of offset from the Top Middle position in the X axis.</param>     
+        /// <param name="yOffset">The number of pixel of offset from the Top Middle position in the Y axis.</param>    
+        public static Vector2 GetCenterPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+        {
+            return new Vector2(graphicsDevice.Viewport.Width / 2 - baseObject.Texture.Width / 2 + xOffset, graphicsDevice.Viewport.Height / 2 - baseObject.Texture.Height / 2 + yOffset);
+        }
+
+        /// <summary>
+        /// This method will return a Vector2 calculated as the Top Center position of the window of a given object. Used to position an object in the top center of the window.
+        /// This assumes a game object Origin of 0,0.
+        /// </summary>
+        /// <param name="graphicsDevice">The Game's GraphicsDevice (ScreenManager.Game.GraphicsDevice) if used with Screen Manager.</param>     
+        /// <param name="object">The Game object we need to place. Needed to calculate its width.</param>     
+        /// <param name="xOffset">The number of pixel of offset from the Top Middle position in the X axis.</param>     
+        /// <param name="yOffset">The number of pixel of offset from the Top Middle position in the Y axis.</param>    
+        public static Vector2 GetTopCenterPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+        {
+            return new Vector2(graphicsDevice.Viewport.Width / 2 - baseObject.Texture.Width / 2 + xOffset, baseObject.Texture.Height / 2 + yOffset);
+        }
+
+        /// <summary>
+        /// This method will return a Vector2 calculated as the Bottom Center position of the window of a given object. Used to position an object in the bottom center of the window.
+        /// This assumes a game object Origin of 0,0.
+        /// </summary>
+        /// <param name="graphicsDevice">The Game's GraphicsDevice (ScreenManager.Game.GraphicsDevice) if used with Screen Manager.</param>     
+        /// <param name="object">The Game object we need to place. Needed to calculate its width.</param>     
+        /// <param name="xOffset">The number of pixel of offset from the Top Middle position in the X axis.</param>     
+        /// <param name="yOffset">The number of pixel of offset from the Top Middle position in the Y axis.</param>    
+        public static Vector2 GetBottomCenterPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+        {
+            return new Vector2(graphicsDevice.Viewport.Width / 2 - baseObject.Texture.Width / 2 + xOffset, graphicsDevice.Viewport.Height - baseObject.Texture.Height / 2 + yOffset);
+        }
+
+        /// <summary>
+        /// This method will return a Vector2 calculated as the Bottom Left position of the window of a given object. Used to position an object in the bottom Left of the window.
+        /// This assumes a game object Origin of 0,0.
+        /// </summary>
+        /// <param name="graphicsDevice">The Game's GraphicsDevice (ScreenManager.Game.GraphicsDevice) if used with Screen Manager.</param>     
+        /// <param name="object">The Game object we need to place. Needed to calculate its width.</param>     
+        /// <param name="xOffset">The number of pixel of offset from the Top Middle position in the X axis.</param>     
+        /// <param name="yOffset">The number of pixel of offset from the Top Middle position in the Y axis.</param>    
+        public static Vector2 GetBottomLeftPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+        {
+            return new Vector2(0 + xOffset, graphicsDevice.Viewport.Height - baseObject.Texture.Height + yOffset);
+        }
+
+        /// <summary>
+        /// This method will return a Vector2 calculated as the Bottom Right position of the window of a given object. Used to position an object in the bottom Right of the window.
+        /// This assumes a game object Origin of 0,0.
+        /// </summary>
+        /// <param name="graphicsDevice">The Game's GraphicsDevice (ScreenManager.Game.GraphicsDevice) if used with Screen Manager.</param>     
+        /// <param name="object">The Game object we need to place. Needed to calculate its width.</param>     
+        /// <param name="xOffset">The number of pixel of offset from the Top Middle position in the X axis.</param>     
+        /// <param name="yOffset">The number of pixel of offset from the Top Middle position in the Y axis.</param>    
+        public static Vector2 GetBottomRightPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+        {
+            return new Vector2(graphicsDevice.Viewport.Width - baseObject.Texture.Width + xOffset, graphicsDevice.Viewport.Height - baseObject.Texture.Height + yOffset);
+        }       
+
+        /// <summary>
+        /// This method will return a Vector2 calculated as the Top Right position of the window of a given object. Used to position an object in the top right of the window.
+        /// This assumes a game object Origin of 0,0.
+        /// </summary>
+        /// <param name="graphicsDevice">The Game's GraphicsDevice (ScreenManager.Game.GraphicsDevice) if used with Screen Manager.</param>     
+        /// <param name="object">The Game object we need to place. Needed to calculate its width.</param>     
+        /// <param name="xOffset">The number of pixel of offset from the Top Middle position in the X axis.</param>     
+        /// <param name="yOffset">The number of pixel of offset from the Top Middle position in the Y axis.</param>    
+        public static Vector2 GetTopRightPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
+        {
+            return new Vector2(graphicsDevice.Viewport.Width - baseObject.Texture.Width + xOffset, 0 + yOffset);
         }
     }
 }
