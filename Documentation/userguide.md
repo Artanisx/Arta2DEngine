@@ -18,6 +18,7 @@ List of classes
 * [BGM - Audio](#bgm)
 * [Utils - Utils](#utils)
 * [Screen Manager - Utils](screenmanager.md)
+* [Particle Engine - Graphic](#particleengine)
 
 ### <a name="gameobject"></a>GameObject
 
@@ -643,5 +644,48 @@ cam.LookAt(gameObject.Position);
 ```
 
 Do note that if you set the camera to follow an object, the user can't move it no longer manually as the Move() function will be overridden by the LookAt method (changing directly the Zoom property will work, though). If you put the Move() method below the LookAt method, it will produce some movement, but the camera will snap back to the LookAt object.
+
+[Go back to Classes](#classes).
+
+### <a name="particleengine"></a>Particle Engine
+
+This is a graphic module that implements a simple Particle Engine.
+
+You need to add the correct using statement for it:
+```c
+using Arta2DEngine.Graphics.ParticleEngine;
+```
+
+The engine is very basic and only features a single non configurable "emission type". In the future, the Emission Type will be a separate file that will be added in the constructor of a ParticleManager object.
+
+In order to use the Engine, you first need to create a ParticleEngine:
+```c
+ParticleEngine particleEngine;
+```
+
+Then, in the LoadContent() method, you need to load some textures for the particles. It can be any number of them between 1 and... any sensible number. The constructor requires a List so even if you only have one, you should generate a list and then you can call the constructor giving the list of textures and the default position of the Particle Emitter:
+```c
+ // Load the particles and then initalize the ParticleEngine
+            List<Texture2D> textures = new List<Texture2D>();
+            textures.Add(Content.Load<Texture2D>("Images/particle"));          
+            particleEngine = new ParticleEngine(textures, Vector2.Zero);
+```
+
+In the Update() method you only need to call:
+```c
+particleEngine.Update();
+```
+
+Lastly, to draw the particles, you need to call this in the Draw() method, but OUTSIDE of any spriteBatch.Begin/End cycle:
+```c
+particleEngine.Draw(spriteBatch);
+```
+
+Do keep in mind, you have the option to access the EmitterLocation property to change it inside the Update() method if you so desire:
+
+```c
+particleEngine.EmitterLocation = new Vector2( random.Next(0, ScreenManager.Game.GraphicsDevice.Viewport.Width) * randomization,
+                                              random.Next(0, ScreenManager.Game.GraphicsDevice.Viewport.Height) * randomization);
+```
 
 [Go back to Classes](#classes) - Go back to the [Readme](../README.md).
