@@ -30,6 +30,21 @@ If you prefer to go with the DLL installation (so you don't need access to the E
 
 You can find the documentation clicking this [link](Documentation/userguide.md).
 
+### Features
+
+This engine has several basic features, like:
+
+* Game Object system, to deal with object like entities
+* 2D sprite functionality, including basic animation from texture atlases
+* Audio support for sound effects and music
+* A basic 2D camera system with pan, zoom and lookat functionality
+* A basic 2d primitives system to help with debugging and for collision checks
+* A basic system to handle collisions, thanks to automatically generated bounding boxes and circles using the Intersects method (and Contains for circles).
+* A basic screen manager system to handle multiple screens, like menu, gameplay and outro screens
+* A basic customizable Particle Engine system, with easily extendable effects
+* A basic UI system with buttons with easily generated events
+* A basic Input system built around a "command" object that can work with keyboard, mouse and gamepad
+
 ## Built With
 
 * [Monogame](https://www.monogame.net/) - Monogame Engine
