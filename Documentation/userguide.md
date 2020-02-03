@@ -327,6 +327,12 @@ quitButton.Draw(spriteBatch);
 spriteBatch.End();
 ```
 
+Do keep in mind, "Click" is not the only event available. You can also implement the MouseOver event that will fire when the mouse goes over the button. In order to add this event, you just need to do the same as per the Click event:
+```c
+// Add the event/method that must be processed when the user mouse overs on the button
+quitButton.MouseOver += QuitButton_MouseOver;
+```
+
 [Go back to Classes](#classes)
 
 ### <a name="command"></a>Command

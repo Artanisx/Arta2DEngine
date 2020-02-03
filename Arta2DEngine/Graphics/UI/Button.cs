@@ -24,12 +24,16 @@ namespace Arta2DEngine.Graphics.UI
         private Color backgroundColor = Color.White;
         private Color hoverColor = Color.Gray;
 
+        private bool _curMouseOverStatus;
+        private bool _prevMouseOverStatus;
+
         #endregion
 
         #region Properties
 
-        // Event for each Click action
+        // Event for each Click action and MouseOver action
         public event EventHandler Click;
+        public event EventHandler MouseOver;
 
         // State of the button
         public bool Clicked { get; private set; }
@@ -102,6 +106,9 @@ namespace Arta2DEngine.Graphics.UI
 
         public override void Update(GameTime gameTime)
         {
+            // Save the MouseOverStatus to only send this once per cycle
+            _prevMouseOverStatus = _curMouseOverStatus;            
+
             // Save the previous mouse state
             _previousMouse = _currentMouse;
 
@@ -119,6 +126,13 @@ namespace Arta2DEngine.Graphics.UI
             {
                 _isHovering = true;
 
+                _curMouseOverStatus = true;
+
+                if (_curMouseOverStatus == true && _prevMouseOverStatus == false)
+                {
+                    MouseOver?.Invoke(this, new EventArgs());
+                }
+
                 // If the mouse has been released and it was previously pressed (one "firing" event when one release the buttom)
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
@@ -126,6 +140,8 @@ namespace Arta2DEngine.Graphics.UI
                     Click?.Invoke(this, new EventArgs());
                 }
             }
+            else
+                _curMouseOverStatus = false;
         }
 
         #endregion
