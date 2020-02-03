@@ -17,18 +17,22 @@ namespace Arta2DEngine.Graphics.ParticleEngine
     public class DefaultParticleEffect : ParticleEffect
     {
         private Random random;
+        private float startingScale;
 
         /// <summary>
         /// A Default Particle Effect.                
         /// </summary>
         /// <param name="numberOfParticles">The number of particles that will be fired by this effect.</param>   
-        public DefaultParticleEffect(int numberOfParticles = 1)
+        public DefaultParticleEffect(int numberOfParticles = 1, float startingScaleOfParticle = 1.0f)
         {
             // Set the random
             random = new Random();
 
             // Set the total of particles
             this.numberOfParticles = numberOfParticles;
+
+            // Set the starting scale of particles
+            this.startingScale = startingScaleOfParticle;
         }
 
         /// <summary>
@@ -60,7 +64,7 @@ namespace Arta2DEngine.Graphics.ParticleEngine
                     (float)random.NextDouble());
 
             // Set a random size for this particle
-            float size = (float)random.NextDouble();
+            float size = (float)random.NextDouble() * startingScale;
 
             // Set a random ttl for this particle (minimum 5)
             int ttl = 20 + random.Next(40);

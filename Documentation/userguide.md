@@ -678,10 +678,10 @@ public ParticleEngine(List<Texture2D> textures, Vector2 location, ParticleEffect
 The first one is the list of textures it will use (in our example above, we created it and it is called "textures"), the second is the location for its emitter. The third one is the most important parameter of them all: it's a ParticleEffect that tells the engine how to genereate its particles. The fourth parameter (defaulted to false) tells the ParticleEngine if it should fire off the effect continuously (like a starfield) or just once (like an explosion). Coming back to the third paramenter,
 Arta2DEngine gives one Default effect called DefaultParticleEffects and it can be passed as parameter; but first you need to create one:
 ```c
-DefaultParticleEffect defaultEffect = new DefaultParticleEffect(2);
+DefaultParticleEffect defaultEffect = new DefaultParticleEffect(2, 1.0f);
 ```
 
-The constructor for this effect only takes one parameter: The total number of particles that should be fired. Once you created it, you can call the constructor for the ParticleEngine:
+The constructor for this effect only takes two parameter: The total number of particles that should be fired and the starting scale for the particle (useful if the texture passed for the particle is too big or small). Once you created it, you can call the constructor for the ParticleEngine:
 
 ```c
 particleEngine = new ParticleEngine(textures, Vector2.Zero, defaultEffect);
