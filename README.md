@@ -30,6 +30,10 @@ If you prefer to go with the DLL installation (so you don't need access to the E
 
 You can find the documentation clicking this [link](Documentation/userguide.md).
 
+### Tutorials
+
+You can find the tutorials clicking this [link](Documentation/tutorials.md).
+
 ### Features
 
 This engine has several basic features, like:
