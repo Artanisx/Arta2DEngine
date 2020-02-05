@@ -74,6 +74,17 @@ namespace Arta2DEngine.Graphics
         }
 
         /// <summary>
+        /// This is going to return a Vector2 with the size of the object (width, height). If the texture is not ready (null) it will return 0,0.
+        /// </summary>  
+        public Vector2 Size
+        {
+            get
+            {
+                return Texture == null ? Vector2.Zero : new Vector2(Texture.Width, Texture.Height);
+            }
+        }
+
+        /// <summary>
         /// This is going to be the box around the object to be used for collisions.
         /// </summary>        
         public Rectangle BoundingBox

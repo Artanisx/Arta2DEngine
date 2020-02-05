@@ -47,6 +47,10 @@ A BaseObject has:
 
    This holds the Origin for this object expressed as a Vector2. Trying to get this value will return the center point of the texture. It's used in the Draw method for the rotation. If a rotation is not expressed (so the value is 0.0f), the origin will be assumed as being 0,0 (top left corner). Basically setting externally this properties does nothing; getting this value only returns the center of the texture and it's used for drawing a rotated texture, else it is ignored. A proper GameObject should probably override this property.
    
+* Vector2 Size
+
+   This holds a Vector2 with the size of the object (width, height). If the texture is not ready (null) it will return 0,0; otherwise it will return the texture.width and texture.height.
+   
 * Rectangle SourceRectangle
 
    This holds the source rectangle for this object expressed as a Rectangle. Used for the base drawing method.
