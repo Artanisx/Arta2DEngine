@@ -95,7 +95,7 @@ namespace Arta2DEngine.Input
             GamepadCommand = true;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             if (KeyboardCommand)
             {

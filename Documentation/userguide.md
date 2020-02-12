@@ -14,6 +14,7 @@ List of classes
 * [Primitives2D - Graphic](#primitives2D)
 * [Button - Graphic.UI](#button)
 * [Command - Input](#command)
+* [HandleInputs- Input](#handleinputs)
 * [SFX - Audio](#sfx)
 * [BGM - Audio](#bgm)
 * [Utils - Utils](#utils)
@@ -428,6 +429,52 @@ The last thing to do is to simply call the Update method inside the Update():
 ```c
 fireCommand.Update(gameTime);
 ```
+
+[Go back to Classes](#classes)
+
+### <a name="handleinputs"></a>HandleInputs
+
+While you can use Command directly and update them manually, you can also take advantage of the HandleInputs static class. 
+This will take care of handling a list of all commands and to update them all. It will also significantly reduce the line of codes needed to create a command and of course to update them all. In order to use it you need to apply the usual using statements:
+```c
+using Arta2DEngine.Input;
+```
+
+Afterwards, you can add any command you wish (better to do this inside the Initiate method as usual):
+```c
+HandleInputs.AddCommand(new Command(Keys.D), FireCommand_SinglePress, FireCommand_ContinuedPress);
+```
+
+In the example above we create a new command that will respond to the D key press, and with two events: one for the singlepress (FireCommand_SinglePress) and one for the continuedpress (FireCommand_ContinuedPress). In one single line we have created the command and assigned the events. 
+If you don't want to assiign a singlepress event, you can simply pass null. If you  only want to assign a singlepress event, you can simply close the method there since it will default to null. This is the method signature:
+```c
+public static void AddCommand(Command command, EventHandler singlePressEvent = null, EventHandler continuedPressEvent = null)
+```
+
+As you can see, it's not mandatory to define any event, but you can do so in order to reduce the number of lines. If you wish to set the event at a later date, you can use the methods:
+```c
+public static void SetSinglePressEvent(Command command, EventHandler singlePressEvent)
+```
+or
+```c
+public static void SetContinuedPressEvent(Command command, EventHandler continuedPressEvent)
+```
+
+To set any event for any command already added in the list. The last thing to do is to call simply
+```c
+HandleInputs.Update(); 
+```
+
+Inside your Update() method and it will take care of updating every single command that has been added.
+
+HandleInputs also has a couple of helpful methods:
+```c
+public static int GetCommandsCount()
+public static void Clear()
+DelCommand(Command command)
+```
+
+Which will return the total number of stored command, clear a list of commands and delete a command respectively.
 
 [Go back to Classes](#classes)
 
