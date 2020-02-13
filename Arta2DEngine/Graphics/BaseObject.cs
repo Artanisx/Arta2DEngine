@@ -67,7 +67,7 @@ namespace Arta2DEngine.Graphics
         {
             get
             {
-                return new Vector2(Texture.Width / 2, Texture.Height / 2);
+                return origin;
             }
 
             set { origin = value; }
@@ -91,8 +91,8 @@ namespace Arta2DEngine.Graphics
         {
             get
             {
-                // Creates a rectangle around the object and return it
-                return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+                // Creates a rectangle around the object and return it - It takes the origin to be sure it's taken into account
+                return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, Texture.Bounds.Width, Texture.Bounds.Height);
             }
         }
 
@@ -106,7 +106,9 @@ namespace Arta2DEngine.Graphics
                 // Creates a circle around the object and return it
 
                 // Define its center
-                Vector2 centerOfObject = new Vector2((int)Position.X + Texture.Width / 2, (int)Position.Y + Texture.Height / 2);
+                //Vector2 centerOfObject = new Vector2((int)Position.X + Texture.Width / 2, (int)Position.Y + Texture.Height / 2);
+                //Vector2 centerOfObject = new Vector2((int)Position.X - (int)Origin.X - Texture.Width / 2, (int)Position.Y - (int)Origin.Y - Texture.Height / 2);
+                Vector2 centerOfObject = new Vector2((int)Position.X, (int)Position.Y);
 
                 // Define its radius (half its side)
                 float radiusOfSprite = Texture.Width / 2;
@@ -119,21 +121,38 @@ namespace Arta2DEngine.Graphics
 
         // <summary>
         /// This method draws the object. It must be called between a spriteBatch.Begin and spriteBatch.End
-        /// It can be overridden if needed.
+        /// It can be overridden if needed. This will assume a center origin and no offset.
         /// </summary>
         /// <param name="spriteBatch">The spriteBatch from Game().</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            // If we have a rotation...
-            if (RotationAngle != 0.0f)
-                spriteBatch.Draw(Texture, Position, SourceRectangle, Color.White, RotationAngle, Origin, Scale, SpriteEffects.None, 1);
-            else
-            {
-                // We don't have a rotation, so probably we don't want the origin centered to the object, but rather to 0,0.
-                // This is BAD!
-                // TODO: Try to come up with a better system to handle the Origin of a base object.
-                spriteBatch.Draw(Texture, Position, SourceRectangle, Color.White, RotationAngle, new Vector2(0,0), Scale, SpriteEffects.None, 1);
-            }
+            if (Texture != null)
+                spriteBatch.Draw(Texture, Position, SourceRectangle, Color.White, RotationAngle, Origin, Scale, SpriteEffects.None, 0);            
+        }
+
+        /// <summary>
+        /// This is another overload for Draw. It will take an offset and use it to draw the object.
+        /// This will take care of the rotation as well. The origin point will be the center.
+        /// </summary>
+        /// <param name="spriteBatch">The spritebatch</param>
+        /// <param name="offset">The offset from its position</param>
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 offset)
+        {
+            if (Texture != null)
+                spriteBatch.Draw(Texture, new Vector2((int)(Position.X + offset.X), (int)(Position.Y + offset.Y)), SourceRectangle, Color.White, RotationAngle, Origin, Scale, SpriteEffects.None, 0);
+        }
+
+        /// <summary>
+        /// This overload will take an offset and a defined origin to draw the object.
+        /// </summary>
+        /// <param name="spriteBatch">The spritebatch</param>
+        /// <param name="offset">The offset from its position</param>
+        /// <param name="origin">The origin</param>
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 offset, Vector2 origin)
+        {
+            if (Texture != null)
+                spriteBatch.Draw(Texture, new Vector2((int)(Position.X + offset.X), (int)(Position.Y + offset.Y)), SourceRectangle, Color.White, RotationAngle, new Vector2(origin.X, origin.Y), Scale, SpriteEffects.None, 0);
+            
         }
 
         // <summary>

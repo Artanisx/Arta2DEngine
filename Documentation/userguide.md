@@ -46,7 +46,7 @@ A BaseObject has:
    
 * Vector2 virtual Origin
 
-   This holds the Origin for this object expressed as a Vector2. Trying to get this value will return the center point of the texture. It's used in the Draw method for the rotation. If a rotation is not expressed (so the value is 0.0f), the origin will be assumed as being 0,0 (top left corner). Basically setting externally this properties does nothing; getting this value only returns the center of the texture and it's used for drawing a rotated texture, else it is ignored. A proper GameObject should probably override this property.
+   This holds the Origin for this object expressed as a Vector2. 
    
 * Vector2 Size
 
@@ -58,15 +58,25 @@ A BaseObject has:
 
 * Rectangle BoundingBox
 
-   This holds a Rectangle property that encompass the texture. It is created against its Position and Texture information so each time it is polled will be at the right position. It can be used for general and not very precise collision detection.
+   This holds a Rectangle property that encompass the texture. It is created against its Position, Origin and Texture information so each time it is polled will be at the right position. It can be used for general and not very precise collision detection.
    
 * Circle BoundingCircle
 
    This holds a Circle property that encompass the texture. It can be used for collision detection. If an object is less of a square (for instance it's a space ship), checking collisions with a Circle will fire less false collisions than the BoundBox ones. It is a bit more precise than the BoundingBox collision, but it's dependant on the actual texture. This is created against the position and the texture information (from which a center is calculated alongside a radius based on the side of the texture).
    
-While the BaseObject cannot be instantiated, it holds a definition for a Draw method that can be overridden if needed:
+While the BaseObject cannot be instantiated, it holds a definition for a Draw method that can be overridden if needed. The default one simply takes a spriteBatch and assumes the origin (as set) and no offset:
 ```c
 public virtual void Draw(SpriteBatch spriteBatch)
+```
+
+It also features other Draw() methods. One that takes an offset and draws the object offsetting it by the passed Vector2:
+```c
+public virtual void Draw(SpriteBatch spriteBatch, Vector2 offset)
+```
+
+And one that takes both offset and a defined different origin. Usually one would change the origin in the constructor or updating its property, but this method is also present:
+```c
+public virtual void Draw(SpriteBatch spriteBatch, Vector2 offset, Vector2 origin)
 ```
 
 It also features a DrawDebug method used to draw the bounding box, the bouding circle and a radius, using the Primitives2D static class:
@@ -80,7 +90,7 @@ A GameObject has additional stuff:
 
    This holds a Vector2 used for its Velocity.
 
-GameObject implements two different constructors:
+GameObject implements three different constructors:
 ```c
 GameObject(Texture2D texture, Vector2 position)
 ```
@@ -89,6 +99,13 @@ Omitting a Velocity and one that requires it:
 ```c
 GameObject(Texture2D texture, Vector2 position, Vector2 velocity)
 ```
+
+Also a constructor that takes a string as the path for the texture, enabling a construction and texture load in a single line:
+```c
+public GameObject(string texturePath, Vector2 position, ContentManager content)
+```
+
+All these constructors will assume the origin to be the center of the texture as it's definitely needed for rotation to work. Of course, the origin can be changed at a later time.   
    
 To create a GameObject simply do the below:
 ```c
