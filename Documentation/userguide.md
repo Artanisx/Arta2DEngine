@@ -650,7 +650,11 @@ The Utils class contains the below methods:
 * public static Vector2 GetTopRightPosition(GraphicsDevice graphicsDevice, BaseObject baseObject, int xOffset = 0, int yOffset = 0)
 
    This method will return a Vector2 calculated to get the related position. Useful for positioning stuff in relation to the window.
-  
+
+* public static float GetDistance(Vector2 pos, Vector2 target)
+
+   This method will return the distance between two vectors as a float.
+   
 [Go back to Classes](#classes).
 
 ### <a name="camera2d"></a>Camera2D

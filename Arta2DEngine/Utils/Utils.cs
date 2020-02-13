@@ -1,6 +1,7 @@
 ﻿using Arta2DEngine.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Arta2DEngine.Utils
 {
@@ -135,5 +136,17 @@ namespace Arta2DEngine.Utils
         {
             return new Vector2(graphicsDevice.Viewport.Width - baseObject.Texture.Width + xOffset, 0 + yOffset);
         }
+
+        /// <summary>
+        /// This method will return the distance between two vectors.
+        /// </summary>
+        /// <param name="pos">The position of the main vector</param>
+        /// <param name="target">The position of the target vector</param>
+        /// <returns></returns>
+        public static float GetDistance(Vector2 pos, Vector2 target)
+        {
+            return (float)Math.Sqrt(Math.Pow(pos.X - target.X, 2) + Math.Pow(pos.Y - target.Y, 2));
+        }
+
     }
 }
