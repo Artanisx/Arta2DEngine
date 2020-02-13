@@ -57,6 +57,14 @@ namespace Arta2DEngine.Graphics
             this.Position = position;
             this.Velocity = velocity;
             this.Origin = new Vector2(Texture.Bounds.Width / 2, Texture.Bounds.Height / 2);
-        }       
+        }
+
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>        
+        public GameObject()
+        {
+            // Nothing is set!            
+        }
     }
 }
