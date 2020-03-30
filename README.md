@@ -49,6 +49,10 @@ This engine has several basic features, like:
 * A basic UI system with buttons with easily generated events
 * A basic Input system built around a "command" object that can work with keyboard, mouse and gamepad
 
+## Copyright and License
+
+Arta2DEngine is released under GPL v3. You can read it [here](LICENSE).
+
 ## Built With
 
 * [Monogame](https://www.monogame.net/) - Monogame Engine
