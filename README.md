@@ -1,6 +1,6 @@
 # Artanis 2D Engine
 
-This private repository contains my own Monogame 2D Engine.
+This Github repository contains my own Monogame 2D Engine.
 
 ## Getting Started
 
@@ -56,3 +56,13 @@ This engine has several basic features, like:
 ## Authors
 
 * **Fabrizio  Tobia** - [Artanisx](https://github.com/Artanisx/)
+
+## Extra Credits
+During the development of Arta2DEngine I've studied tutorials and source codes from several different sources. Below the list of the ones I specifically recall at the time of writing:
+
+* [RB Whitaker's Wiki](http://rbwhitaker.wikidot.com/monogame-tutorials)
+* [SimonDarksideJ / XNAGameStudio Repo](https://github.com/SimonDarksideJ/XNAGameStudio)
+* [C3 2D XNA Primitives](https://bitbucket.org/C3/2d-xna-primitives/wiki/Home)
+* [XNA Camera 2D](http://www.david-amador.com/2009/10/xna-camera-2d-with-zoom-and-rotation/e)
+
+If I forgot any contribution for the Extra Credits section, please send me a message!
